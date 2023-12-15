@@ -46,6 +46,8 @@ This is my first big project, in github and in python in general, so any kind of
 - I'm assuming every solo and hell event has an equal chance of appearing
 - I'm not sure all events are registered inside the code, I added all the events I found in lordsmobile.fandom.com and also one I found myself in-game. Please send me screenshots of other events that aren't registered (or make a fork or something? I don't really know how github works, nor what the accepted practice in these cases is)
 - Rss and other low-value rewards aren't included in rewards
+- Watcher/CD medals aren't accounted for, and honestly I find very difficult to find a gem equivalent to it, so you should think about your strategy with that in mind.
+- 24h challenges are not taken into account
 
 
 # License
