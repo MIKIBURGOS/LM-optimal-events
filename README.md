@@ -17,10 +17,11 @@ This is my humble try, I simulate the environment of the game where you have tro
 For now (v1), only speedups (represented in seconds, without separating kinds of speedups) are taken into account.
 
 # Usage
+Download opti_event.py and opti_event_funcs.py
 Change the values in variables from lines 5 to 17 (ANC_CORE to HOURS) to your values. 
 Your values for the items is basically the answer to the question "how many gems would I pay for this?". 
 For example, ancient cores can be bought for 950 gems, but would I waste 5k gems for a pyris? Hell no. 
-The last values are basically the boosts you have with the respective gear (if you have 630% training boost, write 6.3) and the hours that get "simulated".
+Then set the boosts you have with the respective gear (if you have 630.56% training boost, write 6.3056) and the hours that get "simulated".
 
 # Intention
 I tried 3 or 4 different ways to calculate every possibility, having to rewrite so many lines of code, so even if this code is redundant sometimes, I'm very happy about it. With previous tries, I was very lost in my own code, so this time my focus was readability (for myself), basically I wanted to know what I was writing and why I was doing it at any point in the code, that's why some values are redundant, why some elif statements could be changed to else but I decided against, etc.
@@ -48,6 +49,7 @@ This is my first big project, in github and in python in general, so any kind of
 - Rss and other low-value rewards aren't included in rewards
 - Watcher/CD medals aren't accounted for, and honestly I find very difficult to find a gem equivalent to it, so you should think about your strategy with that in mind.
 - 24h challenges are not taken into account
+- It assumes you will restart training and merging as soon as it finishes, as if you were a bot. You need to keep this in mind, it might change what the best option for you is.
 
 
 # License
