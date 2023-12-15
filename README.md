@@ -18,10 +18,13 @@ For now (v1), only speedups (represented in seconds, without separating kinds of
 
 # Usage
 Download opti_event.py and opti_event_funcs.py
-Change the values in variables from lines 5 to 17 (ANC_CORE to HOURS) to your values. 
-Your values for the items is basically the answer to the question "how many gems would I pay for this?". 
-For example, ancient cores can be bought for 950 gems, but would I waste 5k gems for a pyris? Hell no. 
-Then set the boosts you have with the respective gear (if you have 630.56% training boost, write 6.3056) and the hours that get "simulated".
+In opti_event.py, change the values in variables from lines 5 to 25 (default_troops to HOURS) to your values. 
+The default values show what you will train and merge by default, play with those numbers to see how many rewards they yield
+Boosts are the speed boost you get in their respective gear (if you have 630.56% training boost, write 6.3056)
+Your values for the items are basically the answer to the question "how many gems would I pay for this?". For example, ancient cores can be bought for 950 gems, but would I waste 5k gems for a pyris? Hell no. (For v1, only speedups are taken into account)
+HOURS represents how many hours will get simulated
+You can change/add print statements at the end to get more info
+
 
 # Intention
 I tried 3 or 4 different ways to calculate every possibility, having to rewrite so many lines of code, so even if this code is redundant sometimes, I'm very happy about it. With previous tries, I was very lost in my own code, so this time my focus was readability (for myself), basically I wanted to know what I was writing and why I was doing it at any point in the code, that's why some values are redundant, why some elif statements could be changed to else but I decided against, etc.
@@ -31,7 +34,7 @@ This is the kind of code that you use once thoroughly but then you know your stu
 Future improvements I have in mind:
 
  - Wait to speed up/instead of speeding up:
-Every time you complete an event, there's a chance that the next batch of troops/pacts won't find a suitable event and will just finish by themselves. If you wait to speed up, there's a chance that you will catch another event right when it's beginning, and therefore the chance of that batch finishing without rewards gets lower.
+After speeding up (and therefore starting a new batch), there's a chance that batch of troops/pacts won't find a suitable event and will just finish by themselves. If you wait to speed up, there's a chance that you will catch another event right when it's beginning, and therefore the chance of that batch finishing without rewards gets lower.
 - Add energy, gems and other to the calculations to see if speeding up is worth it, and also to try alternative methods like trying to get the 320k training hell event.
 - Finish events with lower tiers. For example, if there are 3k points left for a pact event, maybe finish it with pact 3 or less.
 - Optimize waiting. Imagine you have 6h left of training and speeding up now gives you 15 min rewards, waiting might be more profitable on average.
