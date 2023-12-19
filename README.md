@@ -44,7 +44,7 @@ After speeding up (and therefore starting a new batch), there's a chance that ba
 - Add random relocators and other less important rewards (not rss).
 
 # Help_me
-This is my first big project, in github and in python in general, so any kind of help is welcome, be it a way to make the speed_up() function 40 lines long instead of 1200, other implementations that might be interesting, suggestions about the structure of the code or even about the structure of this README or repository in general. 
+This is my first big project, in github and in python in general, so any kind of help is welcome, be it a way to make the speed_up() function 40 lines long instead of 1200, other implementations that might be interesting, suggestions about the structure of the code or even about the structure of this README or repository in general. You can reach me in telegram (link in my profile) or discord (mikiburgos).
 
 # Notes
 - I'm assuming every solo and hell event has an equal chance of appearing
