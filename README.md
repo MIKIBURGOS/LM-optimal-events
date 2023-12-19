@@ -17,9 +17,9 @@ This is my humble try, I simulate the environment of the game where you have tro
 For now (v1), only speedups (represented in seconds, without separating kinds of speedups) are taken into account.
 
 # Usage
-Download opti_event.py and opti_event_funcs.py
-In opti_event.py, change the values in variables from lines 5 to 25 (default_troops to HOURS) to your values. 
-The default values show what you will train and merge by default, play with those numbers to see how many rewards they yield
+Download opti_event.py
+Change the values in variables from lines 6 to 25 (default_troops to HOURS) to your values. 
+The default values show what you will train and merge by default
 Boosts are the speed boost you get in their respective gear (if you have 630.56% training boost, write 6.3056)
 Your values for the items are basically the answer to the question "how many gems would I pay for this?". For example, ancient cores can be bought for 950 gems, but would I waste 5k gems for a pyris? Hell no. (For v1, only speedups are taken into account)
 HOURS represents how many hours will get simulated
