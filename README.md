@@ -40,7 +40,7 @@ After speeding up (and therefore starting a new batch), there's a chance that ba
 - Optimize waiting. Imagine you have 6h left of training and speeding up now gives you 15 min rewards, waiting might be more profitable on average.
 - Take into account if you want to finish events with extra troops or pacts if both are possible (or block extra pacts if you want to use those speedups for watcher or something).
 - Decide main strategy, getting as many speedups as possible to having the highest net income (or be able to choose between the two inside the code).
-- Maybe merge ox_rewards, ox_speedups_used and ox variables in each option, to cut down lines of code.
+- ~Maybe merge ox_rewards, ox_speedups_used and ox variables in each option, to cut down lines of code.~
 - Add random relocators and other less important rewards (not rss).
 
 # Help_me
