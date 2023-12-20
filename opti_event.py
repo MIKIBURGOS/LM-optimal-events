@@ -1,5 +1,4 @@
 from random import choice
-from opti_event_funcs import *
 from math import ceil
 
 # DEFAULT VALUES
@@ -273,14 +272,12 @@ def speed_up():
             o2_solo_step = min(o1_solo_step + 1, 3)
             o2_extra_pacts = extra_pacts(solo.points[o2_solo_step], dpp + spaa)
             o2_rewards = solo.speedups[o2_solo_step] - srac
-            o2_speedups_used = mtl + o2_extra_pacts * pact_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
         elif ph:
             o2_hell_step = min(o1_hell_step + 1, 3)
             o2_extra_pacts = extra_pacts(hell.points[o2_hell_step], dpp)
             o2_rewards = hell.speedups[o2_hell_step]
-            o2_speedups_used = mtl + o2_extra_pacts * pact_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
+        o2_speedups_used = mtl + o2_extra_pacts * pact_tier.real_time
+        o2 = o2_rewards - o2_speedups_used
 
         # CALCULATIONS
         solution = max(o1, o2)
@@ -314,14 +311,12 @@ def speed_up():
             o2_solo_step = min(o1_solo_step + 1, 3)
             o2_extra_troops = extra_troops(solo.points[o2_solo_step], dtp + spaa)
             o2_rewards = solo.speedups[o2_solo_step] - srac
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
         elif th:
             o2_hell_step = min(o1_hell_step + 1, 3)
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
             o2_rewards = hell.speedups[o2_hell_step]
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
+        o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
+        o2 = o2_rewards - o2_speedups_used
 
         # CALCULATIONS
         solution = max(o1, o2)
@@ -354,14 +349,12 @@ def speed_up():
             o2_solo_step = min(o1_solo_step + 1, 3)
             o2_extra_troops = extra_troops(solo.points[o2_solo_step], dtp + spaa)
             o2_rewards = solo.speedups[o2_solo_step] - srac
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
         elif th:
             o2_hell_step = min(o1_hell_step + 1, 3)
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
             o2_rewards = hell.speedups[o2_hell_step]
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
+        o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
+        o2 = o2_rewards - o2_speedups_used
 
         # OPTION 3 (P)
         o3_solo_step = find_step(solo.points, dpp * ps + spaa)
@@ -386,42 +379,36 @@ def speed_up():
             o5_solo_step = min(o4_solo_step + 1, 3)
             o5_extra_troops = extra_troops(solo.points[o5_solo_step], dtp + dpp + spaa)
             o5_rewards = solo.speedups[o5_solo_step] - srac
-            o5_speedups_used = mtl + ttl + o5_extra_troops * troop_tier.real_time
-            o5 = o5_rewards - o5_speedups_used
         elif th:
             o5_hell_step = min(o4_hell_step + 1, 3)
             o5_extra_troops = extra_troops(hell.points[o5_hell_step], dtp + dpp)
             o5_rewards = hell.speedups[o5_hell_step]
-            o5_speedups_used = mtl + ttl + o5_extra_troops * troop_tier.real_time
-            o5 = o5_rewards - o5_speedups_used
+        o5_speedups_used = mtl + ttl + o5_extra_troops * troop_tier.real_time
+        o5 = o5_rewards - o5_speedups_used
 
         # OPTION 6 (P+)
         if ps:
             o6_solo_step = min(o3_solo_step + 1, 3)
             o6_extra_pacts = extra_pacts(solo.points[o6_solo_step], dpp + spaa)
             o6_rewards = solo.speedups[o6_solo_step] - srac
-            o6_speedups_used = mtl + o6_extra_pacts * pact_tier.real_time
-            o6 = o6_rewards - o6_speedups_used
         elif ph:
             o6_hell_step = min(o3_hell_step + 1, 3)
             o6_extra_pacts = extra_pacts(hell.points[o6_hell_step], dpp)
             o6_rewards = hell.speedups[o6_hell_step]
-            o6_speedups_used = mtl + o6_extra_pacts * pact_tier.real_time
-            o6 = o6_rewards - o6_speedups_used
+        o6_speedups_used = mtl + o6_extra_pacts * pact_tier.real_time
+        o6 = o6_rewards - o6_speedups_used
 
         # OPTION 7 (P+Tr)
         if ps:
             o7_solo_step = min(o4_solo_step + 1, 3)
             o7_extra_pacts = extra_pacts(solo.points[o7_solo_step], dtp + dpp + spaa)
             o7_rewards = solo.speedups[o7_solo_step] - srac
-            o7_speedups_used = mtl + ttl + o7_extra_pacts * pact_tier.real_time
-            o7 = o7_rewards - o7_speedups_used
         elif ph:
             o7_hell_step = min(o4_hell_step + 1, 3)
             o7_extra_pacts = extra_pacts(hell.points[o7_hell_step], dtp + dpp)
             o7_rewards = hell.speedups[o7_hell_step]
-            o7_speedups_used = mtl + ttl + o7_extra_pacts * pact_tier.real_time
-            o7 = o7_rewards - o7_speedups_used
+        o7_speedups_used = mtl + ttl + o7_extra_pacts * pact_tier.real_time
+        o7 = o7_rewards - o7_speedups_used
 
         # CALCULATIONS
         solution = max(o1, o2, o3, o4, o5, o6, o7)
@@ -491,17 +478,14 @@ def speed_up():
             o2_extra_pacts = extra_pacts(hell.points[o2_hell_step], dpp)
             o2_solo_rewards = o1_solo_rewards
             o2_hell_rewards = hell.speedups[o2_hell_step]
-            o2_rewards = o2_solo_rewards + o2_hell_rewards
-            o2_speedups_used = mtl + o2_extra_pacts * pact_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
         else:
             o2_solo_step = o1_solo_step + 1
             o2_extra_pacts = extra_pacts(solo.points[o2_solo_step], dpp + spaa)
             o2_solo_rewards = solo.speedups[o2_solo_step] - srac
             o2_hell_rewards = o1_hell_rewards
-            o2_rewards = o2_solo_rewards + o2_hell_rewards
-            o2_speedups_used = mtl + o2_extra_pacts * pact_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
+        o2_rewards = o2_solo_rewards + o2_hell_rewards
+        o2_speedups_used = mtl + o2_extra_pacts * pact_tier.real_time
+        o2 = o2_rewards - o2_speedups_used
 
         # OPTION 3 (P++)
         if o1_solo_step == 3 or o1_hell_step == 3:
@@ -554,14 +538,12 @@ def speed_up():
             o2_solo_step = min(o1_solo_step + 1, 3)
             o2_extra_troops = extra_troops(solo.points[o2_solo_step], dtp + spaa)
             o2_rewards = solo.speedups[o2_solo_step] - srac
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
         elif th:
             o2_hell_step = min(o1_hell_step + 1, 3)
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
             o2_rewards = hell.speedups[o2_hell_step]
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
+        o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
+        o2 = o2_rewards - o2_speedups_used
 
         # OPTION 3 (P)
         o3_solo_step = find_step(solo.points, dpp * ps + spaa)
@@ -587,31 +569,26 @@ def speed_up():
             o5_extra_troops = extra_troops(solo.points[o5_solo_step], dtp + spaa)
             o5_solo_rewards = solo.speedups[o5_solo_step] - srac
             o5_hell_rewards = o4_hell_rewards
-            o5_rewards = o5_solo_rewards + o5_hell_rewards
-            o5_speedups_used = ttl + o5_extra_troops * troop_tier.real_time
-            o5 = o5_rewards - o5_speedups_used
         elif th:
             o5_hell_step = min(o4_hell_step + 1, 3)
             o5_extra_troops = extra_troops(hell.points[o5_hell_step], dtp)
             o5_solo_rewards = o4_solo_rewards
             o5_hell_rewards = hell.speedups[o5_hell_step]
-            o5_rewards = o5_solo_rewards + o5_hell_rewards
-            o5_speedups_used = ttl + o5_extra_troops * troop_tier.real_time
-            o5 = o5_rewards - o5_speedups_used
+        o5_rewards = o5_solo_rewards + o5_hell_rewards
+        o5_speedups_used = ttl + o5_extra_troops * troop_tier.real_time
+        o5 = o5_rewards - o5_speedups_used
 
         # OPTION 6 (P+)
         if ps:
             o6_solo_step = min(o3_solo_step + 1, 3)
             o6_extra_pacts = extra_pacts(solo.points[o6_solo_step], dpp + spaa)
             o6_rewards = solo.speedups[o6_solo_step] - srac
-            o6_speedups_used = mtl + o6_extra_pacts * pact_tier.real_time
-            o6 = o6_rewards - o6_speedups_used
         elif ph:
             o6_hell_step = min(o3_hell_step + 1, 3)
             o6_extra_pacts = extra_pacts(hell.points[o6_hell_step], dpp)
             o6_rewards = hell.speedups[o6_hell_step]
-            o6_speedups_used = mtl + o6_extra_pacts * pact_tier.real_time
-            o6 = o6_rewards - o6_speedups_used
+        o6_speedups_used = mtl + o6_extra_pacts * pact_tier.real_time
+        o6 = o6_rewards - o6_speedups_used
 
         # OPTION 7 (P+Tr)
         if ps:
@@ -619,17 +596,14 @@ def speed_up():
             o7_extra_pacts = extra_pacts(solo.points[o7_solo_step], dpp + spaa)
             o7_solo_rewards = solo.speedups[o7_solo_step] - srac
             o7_hell_rewards = o4_hell_rewards
-            o7_rewards = o7_solo_rewards + o7_hell_rewards
-            o7_speedups_used = mtl + o7_extra_pacts * pact_tier.real_time
-            o7 = o7_rewards - o7_speedups_used
         elif ph:
             o7_hell_step = min(o4_hell_step + 1, 3)
             o7_extra_pacts = extra_pacts(hell.points[o7_hell_step], dpp)
             o7_solo_rewards = o4_solo_rewards
             o7_hell_rewards = hell.speedups[o7_hell_step]
-            o7_rewards = o7_solo_rewards + o7_hell_rewards
-            o7_speedups_used = mtl + o7_extra_pacts * pact_tier.real_time
-            o7 = o7_rewards - o7_speedups_used
+        o7_rewards = o7_solo_rewards + o7_hell_rewards
+        o7_speedups_used = mtl + o7_extra_pacts * pact_tier.real_time
+        o7 = o7_rewards - o7_speedups_used
 
         # OPTION 8 (P+Tr+)
         o8_solo_step = min(o4_solo_step + 1, 3)
@@ -714,14 +688,12 @@ def speed_up():
             o2_solo_step = min(o1_solo_step + 1, 3)
             o2_extra_troops = extra_troops(solo.points[o2_solo_step], dtp + spaa)
             o2_rewards = solo.speedups[o2_solo_step] - srac
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
         elif th:
             o2_hell_step = min(o1_hell_step + 1, 3)
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
             o2_rewards = hell.speedups[o2_hell_step]
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
+        o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
+        o2 = o2_rewards - o2_speedups_used
 
         # OPTION 3 (P)
         o3_solo_step = find_step(solo.points, dpp + spaa)
@@ -747,17 +719,14 @@ def speed_up():
             o5_extra_troops = extra_troops(solo.points[o5_solo_step], dtp + dpp + spaa)
             o5_solo_rewards = solo.speedups[o5_solo_step] - srac
             o5_hell_rewards = o4_hell_rewards
-            o5_rewards = o5_solo_rewards + o5_hell_rewards
-            o5_speedups_used = mtl + ttl + o5_extra_troops * troop_tier.real_time
-            o5 = o5_rewards - o5_speedups_used
         elif th:
             o5_hell_step = min(o4_hell_step + 1, 3)
             o5_extra_troops = extra_troops(hell.points[o5_hell_step], dtp + dpp)
             o5_solo_rewards = o4_solo_rewards
             o5_hell_rewards = hell.speedups[o5_hell_step]
-            o5_rewards = o5_solo_rewards + o5_hell_rewards
-            o5_speedups_used = mtl + ttl + o5_extra_troops * troop_tier.real_time
-            o5 = o5_rewards - o5_speedups_used
+        o5_rewards = o5_solo_rewards + o5_hell_rewards
+        o5_speedups_used = mtl + ttl + o5_extra_troops * troop_tier.real_time
+        o5 = o5_rewards - o5_speedups_used
 
         # OPTION 6 (P+)
         if o3_solo_step == 3 and o3_hell_step == 3:
@@ -767,17 +736,14 @@ def speed_up():
             o6_extra_pacts = extra_pacts(hell.points[o6_hell_step], dpp)
             o6_solo_rewards = o3_solo_rewards
             o6_hell_rewards = hell.speedups[o6_hell_step]
-            o6_rewards = o6_solo_rewards + o6_hell_rewards
-            o6_speedups_used = mtl + o6_extra_pacts * pact_tier.real_time
-            o6 = o6_rewards - o6_speedups_used
         else:
             o6_solo_step = o3_solo_step + 1
             o6_extra_pacts = extra_pacts(solo.points[o6_solo_step], dpp + spaa)
             o6_solo_rewards = solo.speedups[o6_solo_step] - srac
             o6_hell_rewards = o3_hell_rewards
-            o6_rewards = o6_solo_rewards + o6_hell_rewards
-            o6_speedups_used = mtl + o6_extra_pacts * pact_tier.real_time
-            o6 = o6_rewards - o6_speedups_used
+        o6_rewards = o6_solo_rewards + o6_hell_rewards
+        o6_speedups_used = mtl + o6_extra_pacts * pact_tier.real_time
+        o6 = o6_rewards - o6_speedups_used
 
         # OPTION 7 (P+Tr)
         if o4_solo_step == 3 and o4_hell_step == 3:
@@ -787,17 +753,14 @@ def speed_up():
             o7_extra_pacts = extra_pacts(hell.points[o7_hell_step], dpp + dtp * th)
             o7_solo_rewards = o4_solo_rewards
             o7_hell_rewards = hell.speedups[o7_hell_step]
-            o7_rewards = o7_solo_rewards + o7_hell_rewards
-            o7_speedups_used = mtl + o7_extra_pacts * pact_tier.real_time
-            o7 = o7_rewards - o7_speedups_used
         else:
             o7_solo_step = o4_solo_step + 1
             o7_extra_pacts = extra_pacts(solo.points[o7_solo_step], dpp + dtp * ts + spaa)
             o7_solo_rewards = solo.speedups[o7_solo_step] - srac
             o7_hell_rewards = o4_hell_rewards
-            o7_rewards = o7_solo_rewards + o7_hell_rewards
-            o7_speedups_used = mtl + o7_extra_pacts * pact_tier.real_time
-            o7 = o7_rewards - o7_speedups_used
+        o7_rewards = o7_solo_rewards + o7_hell_rewards
+        o7_speedups_used = mtl + o7_extra_pacts * pact_tier.real_time
+        o7 = o7_rewards - o7_speedups_used
 
         # OPTION 8 (P+Tr+)
         if o4_solo_step == 3 or o4_hell_step == 3:
@@ -808,18 +771,15 @@ def speed_up():
             o8_extra_pacts = extra_pacts(hell.points[o8_hell_step], dpp)
             o8_solo_rewards = o5_solo_rewards
             o8_hell_rewards = hell.speedups[o8_hell_step]
-            o8_rewards = o8_solo_rewards + o8_hell_rewards
-            o8_speedups_used = mtl + ttl + o8_extra_troops * troop_tier.real_time + o8_extra_pacts * pact_tier.real_time
-            o8 = o8_rewards - o8_speedups_used
         elif th:
             o8_solo_step = o4_solo_step + 1
             o8_extra_troops = o5_extra_troops
             o8_extra_pacts = extra_pacts(solo.points[o8_solo_step], dpp + spaa)
             o8_solo_rewards = solo.speedups[o8_solo_step] - srac
             o8_hell_rewards = o5_hell_rewards
-            o8_rewards = o8_solo_rewards + o8_hell_rewards
-            o8_speedups_used = mtl + ttl + o8_extra_troops * troop_tier.real_time + o8_extra_pacts * pact_tier.real_time
-            o8 = o8_rewards - o8_speedups_used
+        o8_rewards = o8_solo_rewards + o8_hell_rewards
+        o8_speedups_used = mtl + ttl + o8_extra_troops * troop_tier.real_time + o8_extra_pacts * pact_tier.real_time
+        o8 = o8_rewards - o8_speedups_used
 
         # OPTION 9 (P++)
         if o3_solo_step == 3 or o3_hell_step == 3:
@@ -935,17 +895,14 @@ def speed_up():
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
             o2_solo_rewards = o1_solo_rewards
             o2_hell_rewards = hell.speedups[o2_hell_step]
-            o2_rewards = o2_solo_rewards + o2_hell_rewards
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
         else:
             o2_solo_step = o1_solo_step + 1
             o2_extra_troops = extra_troops(solo.points[o2_solo_step], dtp + spaa)
             o2_solo_rewards = solo.speedups[o2_solo_step] - srac
             o2_hell_rewards = o1_hell_rewards
-            o2_rewards = o2_solo_rewards + o2_hell_rewards
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
+        o2_rewards = o2_solo_rewards + o2_hell_rewards
+        o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
+        o2 = o2_rewards - o2_speedups_used
 
         # OPTION 3 (Tr++)
         if o1_solo_step == 3 or o1_hell_step == 3:
@@ -1001,17 +958,14 @@ def speed_up():
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
             o2_solo_rewards = o1_solo_rewards
             o2_hell_rewards = hell.speedups[o2_hell_step]
-            o2_rewards = o2_solo_rewards + o2_hell_rewards
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
         else:
             o2_solo_step = o1_solo_step + 1
             o2_extra_troops = extra_troops(solo.points[o2_solo_step], dtp + spaa)
             o2_solo_rewards = solo.speedups[o2_solo_step] - srac
             o2_hell_rewards = o1_hell_rewards
-            o2_rewards = o2_solo_rewards + o2_hell_rewards
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
+        o2_rewards = o2_solo_rewards + o2_hell_rewards
+        o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
+        o2 = o2_rewards - o2_speedups_used
 
         # OPTION 3 (Tr++)
         if o1_solo_step == 3 or o1_hell_step == 3:
@@ -1052,17 +1006,14 @@ def speed_up():
             o6_extra_troops = extra_troops(hell.points[o6_hell_step], dtp + dpp * ph)
             o6_solo_rewards = o5_solo_rewards
             o6_hell_rewards = hell.speedups[o6_hell_step]
-            o6_rewards = o6_solo_rewards + o6_hell_rewards
-            o6_speedups_used = mtl + ttl + o6_extra_troops * troop_tier.real_time
-            o6 = o6_rewards - o6_speedups_used
         else:
             o6_solo_step = o5_solo_step + 1
             o6_extra_troops = extra_troops(solo.points[o6_solo_step], dtp + dpp * ps + spaa)
             o6_solo_rewards = solo.speedups[o6_solo_step] - srac
             o6_hell_rewards = o5_hell_rewards
-            o6_rewards = o6_solo_rewards + o6_hell_rewards
-            o6_speedups_used = ttl + mtl + o6_extra_troops * troop_tier.real_time
-            o6 = o6_rewards - o6_speedups_used
+        o6_rewards = o6_solo_rewards + o6_hell_rewards
+        o6_speedups_used = ttl + mtl + o6_extra_troops * troop_tier.real_time
+        o6 = o6_rewards - o6_speedups_used
 
         # OPTION 7 (PTr++)
         if o5_solo_step == 3 or o5_hell_step == 3:
@@ -1082,14 +1033,12 @@ def speed_up():
             o8_solo_step = min(o4_solo_step + 1, 3)
             o8_extra_pacts = extra_pacts(solo.points[o8_solo_step], dpp + spaa)
             o8_rewards = solo.speedups[o8_solo_step] - srac
-            o8_speedups_used = mtl + o8_extra_pacts * pact_tier.real_time
-            o8 = o8_rewards - o8_speedups_used
         elif ph:
             o8_hell_step = min(o4_hell_step + 1, 3)
             o8_extra_pacts = extra_pacts(hell.points[o8_hell_step], dpp)
             o8_rewards = hell.speedups[o8_hell_step]
-            o8_speedups_used = mtl + o8_extra_pacts * pact_tier.real_time
-            o8 = o8_rewards - o8_speedups_used
+        o8_speedups_used = mtl + o8_extra_pacts * pact_tier.real_time
+        o8 = o8_rewards - o8_speedups_used
 
         # OPTION 9 (P+Tr)
         if ps:
@@ -1097,17 +1046,14 @@ def speed_up():
             o9_extra_pacts = extra_pacts(solo.points[o9_solo_step], dpp + dtp + spaa)
             o9_solo_rewards = solo.speedups[o9_solo_step] - srac
             o9_hell_rewards = o5_hell_rewards
-            o9_rewards = o9_solo_rewards + o9_hell_rewards
-            o9_speedups_used = mtl + ttl + o9_extra_pacts * pact_tier.real_time
-            o9 = o9_rewards - o9_speedups_used
         elif ph:
             o9_hell_step = min(o5_hell_step + 1, 3)
             o9_extra_pacts = extra_pacts(hell.points[o9_hell_step], dpp + dtp)
             o9_solo_rewards = o5_solo_rewards
             o9_hell_rewards = hell.speedups[o9_hell_step]
-            o9_rewards = o9_solo_rewards + o9_hell_rewards
-            o9_speedups_used = mtl + ttl + o9_extra_pacts * pact_tier.real_time
-            o9 = o9_rewards - o9_speedups_used
+        o9_rewards = o9_solo_rewards + o9_hell_rewards
+        o9_speedups_used = mtl + ttl + o9_extra_pacts * pact_tier.real_time
+        o9 = o9_rewards - o9_speedups_used
 
         # OPTION 10 (P+Tr+)
         if o5_solo_step == 3 or o5_hell_step == 3:
@@ -1118,18 +1064,15 @@ def speed_up():
             o10_extra_pacts = o9_extra_pacts
             o10_solo_rewards = o9_solo_rewards
             o10_hell_rewards = hell.speedups[o10_hell_step]
-            o10_rewards = o10_solo_rewards + o10_hell_rewards
-            o10_speedups_used = ttl + mtl + o10_extra_troops * troop_tier.real_time + o10_extra_pacts * pact_tier.real_time
-            o10 = o10_rewards - o10_speedups_used
         elif ph:
-            o10_solo_step = o5_hell_step + 1
+            o10_solo_step = o5_solo_step + 1
             o10_extra_troops = extra_troops(solo.points[o10_solo_step], dtp + spaa)
             o10_extra_pacts = o9_extra_pacts
             o10_solo_rewards = solo.speedups[o10_solo_step] - srac
             o10_hell_rewards = o9_hell_rewards
-            o10_rewards = o10_solo_rewards + o10_hell_rewards
-            o10_speedups_used = ttl + mtl + o10_extra_troops * troop_tier.real_time + o10_extra_pacts * pact_tier.real_time
-            o10 = o10_rewards - o10_speedups_used
+        o10_rewards = o10_solo_rewards + o10_hell_rewards
+        o10_speedups_used = ttl + mtl + o10_extra_troops * troop_tier.real_time + o10_extra_pacts * pact_tier.real_time
+        o10 = o10_rewards - o10_speedups_used
 
         # CALCULATIONS
         solution = max(o1, o2, o3, o4, o5, o6, o7, o8, o9, o10)
@@ -1219,17 +1162,14 @@ def speed_up():
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
             o2_solo_rewards = o1_solo_rewards
             o2_hell_rewards = hell.speedups[o2_hell_step]
-            o2_rewards = o2_solo_rewards + o2_hell_rewards
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
         else:
             o2_solo_step = o1_solo_step + 1
             o2_extra_troops = extra_troops(solo.points[o2_solo_step], dtp + spaa)
             o2_solo_rewards = solo.speedups[o2_solo_step] - srac
             o2_hell_rewards = o1_hell_rewards
-            o2_rewards = o2_solo_rewards + o2_hell_rewards
-            o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-            o2 = o2_rewards - o2_speedups_used
+        o2_rewards = o2_solo_rewards + o2_hell_rewards
+        o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
+        o2 = o2_rewards - o2_speedups_used
 
         # OPTION 3 (Tr++)
         if o1_solo_step == 3 or o1_hell_step == 3:
@@ -1270,17 +1210,14 @@ def speed_up():
             o6_extra_troops = extra_troops(hell.points[o6_hell_step], dtp + dpp)
             o6_solo_rewards = o5_solo_rewards
             o6_hell_rewards = hell.speedups[o6_hell_step]
-            o6_rewards = o6_solo_rewards + o6_hell_rewards
-            o6_speedups_used = ttl + mtl + o6_extra_troops * troop_tier.real_time
-            o6 = o6_rewards - o6_speedups_used
         else:
             o6_solo_step = o5_solo_step + 1
             o6_extra_troops = extra_troops(solo.points[o6_solo_step], dtp + dpp + spaa)
             o6_solo_rewards = solo.speedups[o6_solo_step] - srac
             o6_hell_rewards = o5_hell_rewards
-            o6_rewards = o6_solo_rewards + o6_hell_rewards
-            o6_speedups_used = ttl + mtl + o6_extra_troops * troop_tier.real_time
-            o6 = o6_rewards - o6_speedups_used
+        o6_rewards = o6_solo_rewards + o6_hell_rewards
+        o6_speedups_used = ttl + mtl + o6_extra_troops * troop_tier.real_time
+        o6 = o6_rewards - o6_speedups_used
 
         # OPTION 7 (PTr++)
         if o5_solo_step == 3 or o5_hell_step == 3:
@@ -1303,17 +1240,14 @@ def speed_up():
             o8_extra_pacts = extra_pacts(hell.points[o8_hell_step], dpp)
             o8_solo_rewards = o4_solo_rewards
             o8_hell_rewards = hell.points[o8_hell_step]
-            o8_rewards = o8_solo_rewards + o8_hell_rewards
-            o8_speedups_used = mtl + o8_extra_pacts * pact_tier.real_time
-            o8 = o8_rewards - o8_speedups_used
         else:
             o8_solo_step = o4_solo_step + 1
             o8_extra_pacts = extra_pacts(solo.points[o8_solo_step], dpp + spaa)
             o8_solo_rewards = solo.speedups[o8_solo_step] - srac
             o8_hell_rewards = o4_hell_rewards
-            o8_rewards = o8_solo_rewards + o8_hell_rewards
-            o8_speedups_used = mtl + o8_extra_pacts * pact_tier.real_time
-            o8 = o8_rewards - o8_speedups_used
+        o8_rewards = o8_solo_rewards + o8_hell_rewards
+        o8_speedups_used = mtl + o8_extra_pacts * pact_tier.real_time
+        o8 = o8_rewards - o8_speedups_used
 
         # OPTION 9 (P+Tr)
         if o5_solo_step == 3 and o5_hell_step == 3:
@@ -1323,17 +1257,14 @@ def speed_up():
             o9_extra_pacts = extra_pacts(hell.points[o9_hell_step], dpp)
             o9_solo_rewards = o5_solo_rewards
             o9_hell_rewards = hell.speedups[o9_hell_step]
-            o9_rewards = o9_solo_rewards + o9_hell_rewards
-            o9_speedups_used = mtl + o9_extra_pacts * pact_tier.real_time
-            o9 = o9_rewards - o9_speedups_used
         else:
             o9_solo_step = o5_solo_step + 1
             o9_extra_pacts = extra_pacts(solo.points[o9_solo_step], dpp + spaa)
             o9_solo_rewards = solo.speedups[o9_solo_step] - srac
             o9_hell_rewards = o5_hell_rewards
-            o9_rewards = o9_solo_rewards + o9_hell_rewards
-            o9_speedups_used = mtl + o9_extra_pacts * pact_tier.real_time
-            o9 = o9_rewards - o9_speedups_used
+        o9_rewards = o9_solo_rewards + o9_hell_rewards
+        o9_speedups_used = mtl + o9_extra_pacts * pact_tier.real_time
+        o9 = o9_rewards - o9_speedups_used
 
         # OPTION 10 (P++)
         if o4_solo_step == 3 or o4_hell_step == 3:
