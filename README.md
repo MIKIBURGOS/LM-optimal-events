@@ -2,6 +2,7 @@
 
 - [Description](#Description)
 - [Usage](#Usage)
+- [Nitty_gritty](#Nitty_gritty)
 - [Intention](#Intention)
 - [Future](#Future)
 - [Help_me](#Help_me)
@@ -24,6 +25,24 @@ Boosts are the speed boost you get in their respective gear (if you have 630.56%
 Your values for the items are basically the answer to the question "how many gems would I pay for this?". For example, ancient cores can be bought for 950 gems, but would I waste 5k gems for a pyris? Hell no. (For v1, only speedups are taken into account)
 HOURS represents how many hours will get simulated
 You can change/add print statements at the end to get more info
+
+# Nitty_gritty
+There are 4 relevant kind of events for this project: with pacts, with troops, with both, with none. Since there are 2 events at the same time, we have 4^2 combinations, which I called grids and are represented like this: 
+- (None|P) would be a solo event with nothing relevant and a solo event with pacts
+- (P+Tr|Tr) would be a solo event with both and hell event with troops
+There are also 4^2 combinations of what you can do with objects (troops and pacts), 4 for each:
+- Do nothing
+- Speed up what you have already training/merging, represented by P or Tr
+- Speed up what you have and make extra to get to the closest next step, represented by P+ or Tr+
+- Speed up what you have and make extra to get to the next step of both solo and hell events, represented by P++ or Tr++
+
+Nothing else makes sense if you assume that getting from any step to the next one without any troops/pacts already getting produced will never be worth it.
+Some of these combinations never make sense, like P++Tr++, because if you have PTr, you can choose to get the next steps for both events with either troops or pacts. If you want a mix, be my guest, but you may as well just do some events with extra troops and some with extra pacts.
+Some of these combinations don't make sense in some grids, for example if you're in (P|P), speeding up your troops won't yield any benefit, so you're left with only 4 options (None, P, P+ and P++)
+
+Some of the grids are symmetrical (like (P|None) and (None|P)), and therefore can be treated as the same, that leaves us with 9 different grids (and None|None) depending on if there are pacts and troops in solo and hell events, represented in the code as pact_solo, pact_hell, troop_solo and troop_hell (ps, ph, ts and th inside the speedup function)
+
+So basically it's a loop where it checks that it's not a (None|None) grid and uses the speedup function. The function then checks what grid it belongs to, and calculates all the options inside that grid. Some options don't make sense some times (like Tr++ if you already got solo step 3, because there's no step 4), so I set them to -1000000 to avoid errors in the calculation process. It adds everything relevant to TOTAL variables and finishes the function. 
 
 
 # Intention
