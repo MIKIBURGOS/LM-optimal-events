@@ -245,6 +245,20 @@ def extra_pacts(points_to_achieve, points_achieved):
     return max(ceil((points_to_achieve - points_achieved) / pact_tier.points), 0)
 
 
+def calculate(best: list):
+    global TOTAL_SPEEDUPS_EARNED, TOTAL_SPEEDUPS_USED, spaa, mtl, ttl, TOTAL_TIMES_SPED_UP
+    '''best = [(benefit, rewards, speedups_used, solo_points, used_pacts:Bool, used_troops:Bool) * options]'''
+    if best[0] >= 0:
+        TOTAL_TIMES_SPED_UP += 1
+        TOTAL_SPEEDUPS_EARNED += best[1]
+        TOTAL_SPEEDUPS_USED += best[2]
+        spaa += best[3]
+        if best[4]:
+            mtl = dmt
+        if best[5]:
+            ttl = dtt
+
+
 def speed_up():
     global current_solo, current_hell, pact_solo, pact_hell, troop_solo, troop_hell, TOTAL_SPEEDUPS_USED, TOTAL_SPEEDUPS_EARNED, ttl, mtl, TOTAL_TIMES_SPED_UP, spaa
 
@@ -265,7 +279,7 @@ def speed_up():
         o1_hell_rewards = hell.speedups[o1_hell_step]
         o1_rewards = o1_solo_rewards + o1_hell_rewards
         o1_speedups_used = mtl
-        o1 = o1_rewards - o1_speedups_used
+        o1 = (o1_rewards - o1_speedups_used, o1_rewards, o1_speedups_used, dpp * ps, True, False)
 
         # OPTION 2 (P+)
         if ps:
@@ -277,23 +291,10 @@ def speed_up():
             o2_extra_pacts = extra_pacts(hell.points[o2_hell_step], dpp)
             o2_rewards = hell.speedups[o2_hell_step]
         o2_speedups_used = mtl + o2_extra_pacts * pact_tier.real_time
-        o2 = o2_rewards - o2_speedups_used
+        o2 = (o2_rewards - o2_speedups_used, o2_rewards, o2_speedups_used, (dpp + o2_extra_pacts) * ps, True, False)
 
         # CALCULATIONS
-        solution = max(o1, o2)
-        if solution >= 0:
-            TOTAL_TIMES_SPED_UP += 1
-            if solution == o1:
-                TOTAL_SPEEDUPS_USED += o1_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o1_rewards
-                mtl = dmt
-                spaa += dpp * ps
-
-            else:
-                TOTAL_SPEEDUPS_USED += o2_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o2_rewards
-                mtl = dmt
-                spaa += (dpp + o2_extra_pacts * pact_tier.points) * ps
+        calculate(max([o1, o2], key=lambda x: x[0])
 
     # GRID 2 (None|Tr or Tr|None)
     elif (ts and not ph and not ps and not th) or (th and not ps and not ts and not ph):
@@ -304,7 +305,7 @@ def speed_up():
         o1_hell_rewards = hell.speedups[o1_hell_step]
         o1_rewards = o1_solo_rewards + o1_hell_rewards
         o1_speedups_used = ttl
-        o1 = o1_rewards - o1_speedups_used
+        o1 = (o1_rewards - o1_speedups_used, o1_rewards, o1_speedups_used, dtp * ts, False, True)
 
         # OPTION 2 (Tr+)
         if ts:
@@ -316,22 +317,10 @@ def speed_up():
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
             o2_rewards = hell.speedups[o2_hell_step]
         o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-        o2 = o2_rewards - o2_speedups_used
+        o2 = (o2_rewards - o2_speedups_used, o2_rewards, o2_speedups_used, (dtp + o2_extra_troops) * ts, False, True)
 
         # CALCULATIONS
-        solution = max(o1, o2)
-        if solution >= 0:
-            TOTAL_TIMES_SPED_UP += 1
-            if solution == o1:
-                TOTAL_SPEEDUPS_USED += o1_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o1_rewards
-                ttl = dtt
-                spaa += dtp * ts
-            else:
-                TOTAL_SPEEDUPS_USED += o2_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o2_rewards
-                ttl = dtt
-                spaa += (dtp + o2_extra_troops * troop_tier.points) * ts
+        calculate(max([o1, o2], key=lambda x: x[0])
 
     # GRID 3 (None|P+Tr or P+Tr|None)
     elif (ps and ts and not ph and not th) or (ph and th and not ps and not ts):
@@ -342,7 +331,7 @@ def speed_up():
         o1_hell_rewards = hell.speedups[o1_hell_step]
         o1_rewards = o1_solo_rewards + o1_hell_rewards
         o1_speedups_used = ttl
-        o1 = o1_rewards - o1_speedups_used
+        o1 = (o1_rewards - o1_speedups_used, o1_rewards, o1_speedups_used, dtp * ts, False, True)
 
         # OPTION 2 (Tr+)
         if ts:
@@ -354,7 +343,7 @@ def speed_up():
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
             o2_rewards = hell.speedups[o2_hell_step]
         o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-        o2 = o2_rewards - o2_speedups_used
+        o2 = (o2_rewards - o2_speedups_used, o2_rewards, o2_speedups_used, (dtp + o2_extra_troops) * ts, False, True)
 
         # OPTION 3 (P)
         o3_solo_step = find_step(solo.points, dpp * ps + spaa)
@@ -363,7 +352,7 @@ def speed_up():
         o3_hell_rewards = hell.speedups[o3_hell_step]
         o3_rewards = o3_solo_rewards + o3_hell_rewards
         o3_speedups_used = mtl
-        o3 = o3_rewards - o3_speedups_used
+        o3 = (o3_rewards - o3_speedups_used, o3_rewards, o3_speedups_used, dpp * ps, True, False)
 
         # OPTION 4 (PTr)
         o4_solo_step = find_step(solo.points, dpp * ps + dtp * ts + spaa)
@@ -372,7 +361,7 @@ def speed_up():
         o4_hell_rewards = hell.speedups[o4_hell_step]
         o4_rewards = o4_solo_rewards + o4_hell_rewards
         o4_speedups_used = mtl + ttl
-        o4 = o4_rewards - o4_speedups_used
+        o4 = (o4_rewards - o4_speedups_used, o4_rewards, o4_speedups_used, dpp * ps + dtp * ts, True, True)
 
         # OPTION 5 (PTr+)
         if ts:
@@ -384,7 +373,7 @@ def speed_up():
             o5_extra_troops = extra_troops(hell.points[o5_hell_step], dtp + dpp)
             o5_rewards = hell.speedups[o5_hell_step]
         o5_speedups_used = mtl + ttl + o5_extra_troops * troop_tier.real_time
-        o5 = o5_rewards - o5_speedups_used
+        o5 = (o5_rewards - o5_speedups_used, o5_rewards, o5_speedups_used, dpp * ps + (dtp + o5_extra_troops) * ts, True, True)
 
         # OPTION 6 (P+)
         if ps:
@@ -396,7 +385,7 @@ def speed_up():
             o6_extra_pacts = extra_pacts(hell.points[o6_hell_step], dpp)
             o6_rewards = hell.speedups[o6_hell_step]
         o6_speedups_used = mtl + o6_extra_pacts * pact_tier.real_time
-        o6 = o6_rewards - o6_speedups_used
+        o6 = (o6_rewards - o6_speedups_used, o6_rewards, o6_speedups_used, (dpp + o6_extra_pacts) * ps, True, False)
 
         # OPTION 7 (P+Tr)
         if ps:
@@ -408,56 +397,10 @@ def speed_up():
             o7_extra_pacts = extra_pacts(hell.points[o7_hell_step], dtp + dpp)
             o7_rewards = hell.speedups[o7_hell_step]
         o7_speedups_used = mtl + ttl + o7_extra_pacts * pact_tier.real_time
-        o7 = o7_rewards - o7_speedups_used
+        o7 = (o7_rewards - o7_speedups_used, o7_rewards, o7_speedups_used, (dpp + o7_extra_pacts) * ps + dtp * ts, True, True)
 
         # CALCULATIONS
-        solution = max(o1, o2, o3, o4, o5, o6, o7)
-        if solution >= 0:
-            TOTAL_TIMES_SPED_UP += 1
-            if solution == o1:
-                TOTAL_SPEEDUPS_USED += o1_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o1_rewards
-                ttl = dtt
-                spaa += dtp * ts
-
-            elif solution == o2:
-                TOTAL_SPEEDUPS_USED += o2_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o2_rewards
-                ttl = dtt
-                spaa += (dtp + o2_extra_troops * troop_tier.points) * ts
-
-            elif solution == o3:
-                TOTAL_SPEEDUPS_USED += o3_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o3_rewards
-                mtl = dmt
-                spaa += dpp * ps
-
-            elif solution == o4:
-                TOTAL_SPEEDUPS_USED += o4_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o4_rewards
-                ttl = dtt
-                mtl = dmt
-                spaa += dpp * ps + dtp * ts
-
-            elif solution == o5:
-                TOTAL_SPEEDUPS_USED += o5_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o5_rewards
-                ttl = dtt
-                mtl = dmt
-                spaa += dpp * ps + (dtp + o5_extra_troops * troop_tier.points) * ts
-
-            elif solution == o6:
-                TOTAL_SPEEDUPS_USED += o6_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o6_rewards
-                mtl = dmt
-                spaa += (dpp + o6_extra_pacts * pact_tier.points) * ps
-
-            elif solution == o7:
-                TOTAL_SPEEDUPS_USED += o7_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o7_rewards
-                ttl = dtt
-                mtl = dmt
-                spaa += (dpp + o7_extra_pacts * pact_tier.points) * ps + dtp * ts
+        calculate(max([o1, o2, o3, o4, o5, o6, o7], key=lambda x: x[0])
 
     # GRID 4 (P|P)
     elif ps and ph and not ts and not th:
@@ -468,11 +411,11 @@ def speed_up():
         o1_hell_rewards = hell.speedups[o1_hell_step]
         o1_rewards = o1_solo_rewards + o1_hell_rewards
         o1_speedups_used = mtl
-        o1 = o1_rewards - o1_speedups_used
+        o1 = (o1_rewards - o1_speedups_used, o1_rewards, o1_speedups_used, dpp * ps, True, False)
 
         # OPTION 2 (P+)
         if o1_solo_step == 3 and o1_hell_step == 3:
-            o2 = -1000000
+            o2 = (-100000000)
         elif o1_solo_step == 3 or solo.points[o1_solo_step + 1] - spaa >= hell.points[o1_hell_step + 1]:
             o2_hell_step = o1_hell_step + 1
             o2_extra_pacts = extra_pacts(hell.points[o2_hell_step], dpp)
@@ -485,11 +428,11 @@ def speed_up():
             o2_hell_rewards = o1_hell_rewards
         o2_rewards = o2_solo_rewards + o2_hell_rewards
         o2_speedups_used = mtl + o2_extra_pacts * pact_tier.real_time
-        o2 = o2_rewards - o2_speedups_used
+        o2 = (o2_rewards - o2_speedups_used, o2_rewards, o2_speedups_used, (dpp + o2_extra_pacts) * ps, True, False)
 
         # OPTION 3 (P++)
         if o1_solo_step == 3 or o1_hell_step == 3:
-            o3 = -1000000
+            o3 = (-100000000)
         else:
             o3_solo_step = o1_solo_step + 1
             o3_hell_step = o1_hell_step + 1
@@ -498,29 +441,10 @@ def speed_up():
             o3_hell_rewards = hell.speedups[o3_hell_step]
             o3_rewards = o3_solo_rewards + o3_hell_rewards
             o3_speedups_used = mtl + o3_extra_pacts * pact_tier.real_time
-            o3 = o3_rewards - o3_speedups_used
+            o3 = (o3_rewards - o3_speedups_used, o3_rewards, o3_speedups_used, (dpp + o3_extra_pacts) * ps, True, False)
 
         # CALCULATIONS
-        solution = max(o1, o2, o3)
-        if solution >= 0:
-            TOTAL_TIMES_SPED_UP += 1
-            if solution == o1:
-                TOTAL_SPEEDUPS_USED += o1_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o1_rewards
-                mtl = dmt
-                spaa += dpp * ps
-
-            elif solution == o2:
-                TOTAL_SPEEDUPS_USED += o2_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o2_rewards
-                mtl = dmt
-                spaa += (dpp + o2_extra_pacts) * ps
-
-            elif solution == o3:
-                TOTAL_SPEEDUPS_USED += o3_speedups_used
-                TOTAL_SPEEDUPS_EARNED += o3_rewards
-                mtl = dmt
-                spaa += (dpp + o3_extra_pacts) * ps
+        calculate(max([o1, o2, o3], key=lambda x: x[0])
 
     # GRID 5 (P|Tr or Tr|P)
     elif (ps and th and not ph and not ts) or (ts and ph and not ps and not th):
@@ -531,7 +455,7 @@ def speed_up():
         o1_hell_rewards = hell.speedups[o1_hell_step]
         o1_rewards = o1_solo_rewards + o1_hell_rewards
         o1_speedups_used = ttl
-        o1 = o1_rewards - o1_speedups_used
+        o1 = (o1_rewards - o1_speedups_used, o1_rewards, o1_speedups_used, dtp * ts, False, True)
 
         # OPTION 2 (Tr+)
         if ts:
@@ -543,7 +467,7 @@ def speed_up():
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
             o2_rewards = hell.speedups[o2_hell_step]
         o2_speedups_used = ttl + o2_extra_troops * troop_tier.real_time
-        o2 = o2_rewards - o2_speedups_used
+        o2 = (o2_rewards - o2_speedups_used, o2_rewards, o2_speedups_used, (dtp + o2_extra_troops) * ts, False, True)
 
         # OPTION 3 (P)
         o3_solo_step = find_step(solo.points, dpp * ps + spaa)
@@ -552,7 +476,7 @@ def speed_up():
         o3_hell_rewards = hell.speedups[o3_hell_step]
         o3_rewards = o3_solo_rewards + o3_hell_rewards
         o3_speedups_used = mtl
-        o3 = o3_rewards - o3_speedups_used
+        o3 = (o3_rewards - o3_speedups_used, o3_rewards, o3_speedups_used, dpp * ps, True, False)
 
         # OPTION 4 (PTr)
         o4_solo_step = find_step(solo.points, dpp * ps + dtp * ts + spaa)
@@ -561,7 +485,7 @@ def speed_up():
         o4_hell_rewards = hell.speedups[o4_hell_step]
         o4_rewards = o4_solo_rewards + o4_hell_rewards
         o4_speedups_used = mtl + ttl
-        o4 = o4_rewards - o4_speedups_used
+        o4 = (o4_rewards - o4_speedups_used, o4_rewards, o4_speedups_used, dpp * ps + dtp * ts, True, True)
 
         # OPTION 5 (PTr+)
         if ts:
@@ -576,7 +500,7 @@ def speed_up():
             o5_hell_rewards = hell.speedups[o5_hell_step]
         o5_rewards = o5_solo_rewards + o5_hell_rewards
         o5_speedups_used = ttl + o5_extra_troops * troop_tier.real_time
-        o5 = o5_rewards - o5_speedups_used
+        o5 = (o5_rewards - o5_speedups_used, o5_rewards, o5_speedups_used, dpp * ps + (dtp + o5_extra_troops) * ts, True, True)
 
         # OPTION 6 (P+)
         if ps:
@@ -588,7 +512,7 @@ def speed_up():
             o6_extra_pacts = extra_pacts(hell.points[o6_hell_step], dpp)
             o6_rewards = hell.speedups[o6_hell_step]
         o6_speedups_used = mtl + o6_extra_pacts * pact_tier.real_time
-        o6 = o6_rewards - o6_speedups_used
+        o6 = (o6_rewards - o6_speedups_used, o1_rewards, o1_speedups_used, dtp * ts, False, True)
 
         # OPTION 7 (P+Tr)
         if ps:
