@@ -601,7 +601,7 @@ def speed_up():
 
         # OPTION 6 (P+)
         if o3_solo_step == 3 and o3_hell_step == 3:
-            o6 = (-1000000)
+            o6 = (-100000000)
         elif o3_solo_step == 3 or solo.points[o3_solo_step + 1] - spaa >= hell.points[o3_hell_step + 1]:
             o6_hell_step = o3_hell_step + 1
             o6_extra_pacts = extra_pacts(hell.points[o6_hell_step], dpp)
@@ -618,7 +618,7 @@ def speed_up():
 
         # OPTION 7 (P+Tr)
         if o4_solo_step == 3 and o4_hell_step == 3:
-            o7 = (-1000000)
+            o7 = (-100000000)
         elif o4_solo_step == 3 or solo.points[o4_solo_step + 1] - dtp * ts - spaa >= hell.points[o4_hell_step + 1] - dtp * th:
             o7_hell_step = o4_hell_step + 1
             o7_extra_pacts = extra_pacts(hell.points[o7_hell_step], dpp + dtp * th)
@@ -635,7 +635,7 @@ def speed_up():
 
         # OPTION 8 (P+Tr+)
         if o4_solo_step == 3 or o4_hell_step == 3:
-            o8 = (-1000000)
+            o8 = (-100000000)
         elif ts:
             o8_hell_step = o4_hell_step + 1
             o8_extra_troops = o5_extra_troops
@@ -654,7 +654,7 @@ def speed_up():
 
         # OPTION 9 (P++)
         if o3_solo_step == 3 or o3_hell_step == 3:
-            o9 = (-1000000)
+            o9 = (-100000000)
         else:
             o9_solo_step = o3_solo_step + 1
             o9_hell_step = o3_hell_step + 1
@@ -667,7 +667,7 @@ def speed_up():
 
         # OPTION 10 (P++Tr)
         if o4_solo_step == 3 or o4_hell_step == 3:
-            o10 = (-1000000)
+            o10 = (-100000000)
         else:
             o10_solo_step = o4_solo_step + 1
             o10_hell_step = o4_hell_step + 1
@@ -694,7 +694,7 @@ def speed_up():
 
         # OPTION 2 (Tr+)
         if o1_solo_step == 3 and o1_hell_step == 3:
-            o2 = (-1000000)
+            o2 = (-100000000)
         elif o1_solo_step == 3 or solo.points[o1_solo_step + 1] - spaa >= hell.points[o1_hell_step + 1]:
             o2_hell_step = o1_hell_step + 1
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
@@ -711,7 +711,7 @@ def speed_up():
 
         # OPTION 3 (Tr++)
         if o1_solo_step == 3 or o1_hell_step == 3:
-            o3 = (-1000000)
+            o3 = (-100000000)
         else:
             o3_solo_step = o1_solo_step + 1
             o3_hell_step = o1_hell_step + 1
@@ -738,7 +738,7 @@ def speed_up():
 
         # OPTION 2 (Tr+)
         if o1_solo_step == 3 and o1_hell_step == 3:
-            o2 = (-1000000)
+            o2 = (-100000000)
         elif o1_solo_step == 3 or solo.points[o1_solo_step + 1] - spaa >= hell.points[o1_hell_step + 1]:
             o2_hell_step = o1_hell_step + 1
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
@@ -755,7 +755,7 @@ def speed_up():
 
         # OPTION 3 (Tr++)
         if o1_solo_step == 3 or o1_hell_step == 3:
-            o3 = (-1000000)
+            o3 = (-100000000)
         else:
             o3_solo_step = o1_solo_step + 1
             o3_hell_step = o1_hell_step + 1
@@ -786,7 +786,7 @@ def speed_up():
 
         # OPTION 6 (PTr+)
         if o5_solo_step == 3 and o5_hell_step == 3:
-            o6 = (-1000000)
+            o6 = (-100000000)
         elif o5_solo_step == 3 or solo.points[o5_solo_step + 1] - dpp * ps - spaa >= hell.points[o5_hell_step + 1] - dpp * ph:
             o6_hell_step = o5_hell_step + 1
             o6_extra_troops = extra_troops(hell.points[o6_hell_step], dtp + dpp * ph)
@@ -803,7 +803,7 @@ def speed_up():
 
         # OPTION 7 (PTr++)
         if o5_solo_step == 3 or o5_hell_step == 3:
-            o7 = (-1000000)
+            o7 = (-100000000)
         else:
             o7_solo_step = o5_solo_step + 1
             o7_hell_step = o5_hell_step + 1
@@ -843,7 +843,7 @@ def speed_up():
 
         # OPTION 10 (P+Tr+)
         if o5_solo_step == 3 or o5_hell_step == 3:
-            o10 = (-1000000)
+            o10 = (-100000000)
         elif ps:
             o10_hell_step = o5_hell_step + 1
             o10_extra_troops = extra_troops(hell.points[o10_hell_step], dtp)
@@ -876,7 +876,7 @@ def speed_up():
 
         # OPTION 2 (Tr+)
         if o1_solo_step == 3 and o1_hell_step == 3:
-            o2 = (-1000000)
+            o2 = (-100000000)
         elif o1_solo_step == 3 or solo.points[o1_solo_step + 1] - spaa >= hell.points[o1_hell_step + 1]:
             o2_hell_step = o1_hell_step + 1
             o2_extra_troops = extra_troops(hell.points[o2_hell_step], dtp)
@@ -893,7 +893,7 @@ def speed_up():
 
         # OPTION 3 (Tr++)
         if o1_solo_step == 3 or o1_hell_step == 3:
-            o3 = (-1000000)
+            o3 = (-100000000)
         else:
             o3_solo_step = o1_solo_step + 1
             o3_hell_step = o1_hell_step + 1
@@ -924,7 +924,7 @@ def speed_up():
 
         # OPTION 6 (PTr+)
         if o5_solo_step == 3 and o5_hell_step == 3:
-            o6 = (-1000000)
+            o6 = (-100000000)
         elif o5_solo_step == 3 or solo.points[o5_solo_step + 1] - dpp * ps - spaa >= hell.points[o5_hell_step + 1] - dpp * ph:
             o6_hell_step = o5_hell_step + 1
             o6_extra_troops = extra_troops(hell.points[o6_hell_step], dtp + dpp)
@@ -941,7 +941,7 @@ def speed_up():
 
         # OPTION 7 (PTr++)
         if o5_solo_step == 3 or o5_hell_step == 3:
-            o7 = (-1000000)
+            o7 = (-100000000)
         else:
             o7_solo_step = o5_solo_step + 1
             o7_hell_step = o5_hell_step + 1
@@ -954,7 +954,7 @@ def speed_up():
 
         # OPTION 8 (P+)
         if o4_solo_step == 3 and o4_hell_step == 3:
-            o8 = (-1000000)
+            o8 = (-100000000)
         elif o4_solo_step == 3 or solo.points[o4_solo_step + 1] - spaa >= hell.points[o4_hell_step + 1]:
             o8_hell_step = o4_hell_step + 1
             o8_extra_pacts = extra_pacts(hell.points[o8_hell_step], dpp)
@@ -971,7 +971,7 @@ def speed_up():
 
         # OPTION 9 (P+Tr)
         if o5_solo_step == 3 and o5_hell_step == 3:
-            o9 = (-1000000)
+            o9 = (-100000000)
         elif o5_solo_step == 3 or solo.points[o5_solo_step + 1] - spaa >= hell.points[o5_hell_step + 1]:
             o9_hell_step = o5_hell_step + 1
             o9_extra_pacts = extra_pacts(hell.points[o9_hell_step], dpp)
@@ -988,7 +988,7 @@ def speed_up():
 
         # OPTION 10 (P++)
         if o4_solo_step == 3 or o4_hell_step == 3:
-            o10 = (-1000000)
+            o10 = (-100000000)
         else:
             o10_solo_step = o4_solo_step + 1
             o10_hell_step = o4_hell_step + 1
@@ -1001,7 +1001,7 @@ def speed_up():
 
         # OPTION 11 (P++Tr)
         if o5_solo_step == 3 or o5_hell_step == 3:
-            o11 = (-1000000)
+            o11 = (-100000000)
         else:
             o11_solo_step = o5_solo_step + 1
             o11_hell_step = o5_hell_step + 1
