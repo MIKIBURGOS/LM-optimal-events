@@ -54,9 +54,9 @@ Future improvements I have in mind:
 
  - Wait to speed up/instead of speeding up:
 After speeding up (and therefore starting a new batch), there's a chance that batch of troops/pacts won't find a suitable event and will just finish by themselves. If you wait to speed up, there's a chance that you will catch another event right when it's beginning, and therefore the chance of that batch finishing without rewards gets lower.
-- Add energy, gems and other to the calculations to see if speeding up is worth it, and also to try alternative methods like trying to get the 320k training hell event.
+- ~Add energy, gems and other to the calculations to see if speeding up is worth it, and also to try alternative methods like trying to get the 320k training hell event.~
 - Finish events with lower tiers. For example, if there are 3k points left for a pact event, maybe finish it with pact 3 or less.
-- Optimize waiting. Imagine you have 6h left of training and speeding up now gives you 15 min rewards, waiting might be more profitable on average.
+- Optimize waiting. Imagine you have 6h left of training and speeding up now gives you 15 min benefit, waiting might be more profitable on average.
 - Take into account if you want to finish events with extra troops or pacts if both are possible (or block extra pacts if you want to use those speedups for watcher or something).
 - Decide main strategy, getting as many speedups as possible to having the highest net income (or be able to choose between the two inside the code).
 - ~Maybe merge ox_rewards, ox_speedups_used and ox variables in each option, to cut down lines of code.~
