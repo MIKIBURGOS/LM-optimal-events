@@ -50,11 +50,10 @@ class SOLO:
         # Abbreviations:               (B)    (MH)  (Ty)      (L)      (P)      (R)         (Tr)
         self.points = [0] + points
         self.speedups = [0] + list(j * 1.0416666 for j in speedups)
-        self.energy = [0] + energy
+        self.energy = [0] + list(k * 0.15 for k in energy)
         self.gems = [0] + gems
         self.other = [0] + other
-        self.rewards = [(self.speedups[i] + (self.energy[i] * 0.15) + self.gems[i] + self.other[i]) for i in range(len(self.speedups))]
-        # speedups and energy transformed into gem values
+        self.rewards = [(self.speedups[l] + (self.energy[l]) + self.gems[l] + self.other[l]) for l in range(len(self.speedups))]
 
 
 class HELL:
@@ -63,8 +62,6 @@ class HELL:
     def __init__(self, categories, points, speedups, energy=[0, 0, 0, 0], gems=[0, 0, 0, 0], other=[0, 0, 0, 0]):
         HELL.hells_array.append(self)
         self.categories = categories
-        # binary with 7 numbers, for Building, MH, Tycoon, Labyrinth, Pacts, Research and Training
-        # Abbreviations:               (B)    (MH)  (TY)      (L)      (P)      (R)         (TR)
         self.points = [0] + points
         self.speedups = [0] + list(j * 1.0416666 for j in speedups)
         self.energy = [0] + list(k * 0.15 for k in energy)
